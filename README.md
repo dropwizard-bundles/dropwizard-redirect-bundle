@@ -1,5 +1,10 @@
-Getting Started
-===============
+# dropwizard-redirect-bundle
+
+A [Dropwizard](http://dropwizard.io) bundle that makes redirection a blast.
+
+[![Build Status](https://travis-ci.org/dropwizard-bundles/dropwizard-redirect-bundle.png)](https://travis-ci.org/dropwizard-bundles/dropwizard-redirect-bundle)
+
+## Getting Started
 
 Just add this maven dependency:
 ```xml
