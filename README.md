@@ -4,14 +4,11 @@ Getting Started
 Just add this maven dependency:
 ```xml
 <dependency>
-  <groupId>com.bazaarvoice.dropwizard</groupId>
+  <groupId>com.nefariouszhen.dropwizard</groupId>
   <artifactId>dropwizard-redirect-bundle</artifactId>
-  <version>0.4.0</version>
+  <version>0.8.0</version>
 </dependency>
 ```
-
-- For Dropwizard 0.6.2: use version < 0.3.0
-- For Dropwizard 0.7.0: use version >= 0.3.0
 
 To redirect one path to another path:
 ```java

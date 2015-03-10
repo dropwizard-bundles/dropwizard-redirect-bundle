@@ -1,4 +1,4 @@
-package com.bazaarvoice.dropwizard.redirect;
+package com.nefariouszhen.dropwizard.redirect;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;

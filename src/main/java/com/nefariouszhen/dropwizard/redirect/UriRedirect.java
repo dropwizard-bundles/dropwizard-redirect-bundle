@@ -1,4 +1,4 @@
-package com.bazaarvoice.dropwizard.redirect;
+package com.nefariouszhen.dropwizard.redirect;
 
 import com.google.common.collect.ImmutableList;
 import com.google.common.collect.Lists;
