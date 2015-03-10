@@ -5,6 +5,7 @@ import java.net.InetAddress;
 import java.net.UnknownHostException;
 
 /**
+ * <p>
  * Redirects any non-HTTPS requests to the equivalent HTTPS URL.  This redirect is very simplistic and only relies on
  * what is actually contained in the request URL that the server sees.  It doesn't pay attention to any headers, and
  * specifically not the {@code X-Forwarded-Proto} or {@code X-Forwarded-Port} headers.  This is usually not an issue
@@ -12,7 +13,7 @@ import java.net.UnknownHostException;
  * property is set Dropwizard will configure Jetty to process any of the {@code X-Forwarded-*} headers prior to any
  * servlets being executed.  In general Jersey does the correct things with those headers and will update the request
  * appropriately.
- * <p/>
+ * </p>
  * NOTE: If for some reason {@code http.useForwardedHeaders} is not set to {@code true} then this redirect may not
  * work as expected.
  */
