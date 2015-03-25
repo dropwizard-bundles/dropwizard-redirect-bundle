@@ -16,6 +16,12 @@ import static com.google.common.base.Preconditions.checkNotNull;
 public class UriRedirect implements Redirect {
   private final List<Entry> entries;
 
+  /**
+   * Construct a UriRedirect that maps all queries that match regex to the replacement string.
+   *
+   * @param regex       The regex to match against URIs.
+   * @param replacement What to put in place of the regex instead. May refer to captured groups.
+   */
   public UriRedirect(String regex, String replacement) {
     checkNotNull(regex);
     checkNotNull(replacement);
@@ -23,6 +29,12 @@ public class UriRedirect implements Redirect {
     entries = ImmutableList.of(new Entry(Pattern.compile(regex), replacement));
   }
 
+  /**
+   * Construct a UriRedirect that maps all queries that match against any regex to its replacement
+   * string.
+   *
+   * @param uriMap The map from regex to replacement string.
+   */
   public UriRedirect(Map<String, String> uriMap) {
     checkNotNull(uriMap);
 
@@ -34,9 +46,6 @@ public class UriRedirect implements Redirect {
     }
   }
 
-  /**
-   * {@inheritDoc}
-   */
   @Override
   public String getRedirect(HttpServletRequest request) {
     String uri = getFullURI(request);
