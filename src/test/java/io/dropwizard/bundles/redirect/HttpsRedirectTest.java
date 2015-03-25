@@ -1,4 +1,4 @@
-package com.nefariouszhen.dropwizard.redirect;
+package io.dropwizard.bundles.redirect;
 
 import com.google.common.base.Throwables;
 import org.junit.Test;

@@ -1,4 +1,4 @@
-package com.nefariouszhen.dropwizard.redirect;
+package io.dropwizard.bundles.redirect;
 
 import com.google.common.collect.Lists;
 import com.google.common.net.HttpHeaders;
