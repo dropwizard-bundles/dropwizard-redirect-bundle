@@ -17,6 +17,13 @@ public class PathRedirect implements Redirect {
     this(sourceUri, targetUri, true);
   }
 
+  /**
+   * Construct a path redirect from sourceUri to targetUri.
+   *
+   * @param sourceUri      The source URI to watch for.
+   * @param targetUri      Where to redirect requests that match the source URI.
+   * @param keepParameters If true, then add the query parameters to the redirect URL.
+   */
   public PathRedirect(String sourceUri, String targetUri, boolean keepParameters) {
     checkNotNull(sourceUri);
     checkNotNull(targetUri);
@@ -29,6 +36,12 @@ public class PathRedirect implements Redirect {
     this(uriMap, true);
   }
 
+  /**
+   * Construct a path redirect from multiple source URIs to multiple target URIs.
+   *
+   * @param uriMap         The mapping from source URI's to redirected URIs.
+   * @param keepParameters If true, then add the query parameters to the redirect URL.
+   */
   public PathRedirect(Map<String, String> uriMap, boolean keepParameters) {
     checkNotNull(uriMap);
 
@@ -36,9 +49,6 @@ public class PathRedirect implements Redirect {
     this.keepParameters = keepParameters;
   }
 
-  /**
-   * {@inheritDoc}
-   */
   @Override
   public String getRedirect(HttpServletRequest request) {
     String uri = pathMapping.get(request.getRequestURI());
