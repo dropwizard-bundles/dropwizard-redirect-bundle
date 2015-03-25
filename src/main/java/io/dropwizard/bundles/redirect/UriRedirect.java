@@ -48,7 +48,7 @@ public class UriRedirect implements Redirect {
 
   @Override
   public String getRedirect(HttpServletRequest request) {
-    String uri = getFullURI(request);
+    String uri = getFullUri(request);
     for (Entry entry : entries) {
       Matcher matcher = entry.getRegex().matcher(uri);
       if (matcher.matches()) {
@@ -59,14 +59,14 @@ public class UriRedirect implements Redirect {
     return null;
   }
 
-  private static String getFullURI(HttpServletRequest request) {
-    StringBuffer requestURL = request.getRequestURL();
+  private static String getFullUri(HttpServletRequest request) {
+    StringBuffer requestUrl = request.getRequestURL();
     String queryString = request.getQueryString();
 
     if (queryString == null) {
-      return requestURL.toString();
+      return requestUrl.toString();
     } else {
-      return requestURL.append('?').append(queryString).toString();
+      return requestUrl.append('?').append(queryString).toString();
     }
   }
 
