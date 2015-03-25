@@ -68,7 +68,6 @@ public class HttpsRedirect implements Redirect {
   private String getRedirectUrl(HttpServletRequest request, String newScheme) {
     String serverName = request.getServerName();
     String uri = request.getRequestURI();
-    String query = request.getQueryString();
 
     StringBuilder redirect = new StringBuilder(100);
     redirect.append(newScheme);
@@ -76,6 +75,7 @@ public class HttpsRedirect implements Redirect {
     redirect.append(serverName);
     redirect.append(uri);
 
+    String query = request.getQueryString();
     if (query != null) {
       redirect.append('?');
       redirect.append(query);
