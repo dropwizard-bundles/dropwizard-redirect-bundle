@@ -9,7 +9,7 @@ A [Dropwizard](http://dropwizard.io) bundle that makes redirection a blast.
 Just add this maven dependency:
 ```xml
 <dependency>
-  <groupId>com.nefariouszhen.dropwizard</groupId>
+  <groupId>io.dropwizard-bundles</groupId>
   <artifactId>dropwizard-redirect-bundle</artifactId>
   <version>0.8.0</version>
 </dependency>
@@ -50,6 +50,8 @@ public class MyApplication extends Application<...> {
 }
 ```
 
+## Non-HTTPS to HTTPS Redirect
+
 To redirect non-HTTPS traffic to the HTTPS port:
 ```java
 public class MyApplication extends Application<...> {
@@ -65,6 +67,8 @@ public class MyApplication extends Application<...> {
   // ...
 }
 ```
+
+## Regular Expression Redirect
 
 For more advanced users, there is also a regular expression based redirector that has access to the full URI.  This
 operates in a similar fashion to the mod-rewrite module for Apache:
