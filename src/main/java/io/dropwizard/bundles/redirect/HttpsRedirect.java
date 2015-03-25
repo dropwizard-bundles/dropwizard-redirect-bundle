@@ -1,8 +1,8 @@
 package io.dropwizard.bundles.redirect;
 
-import javax.servlet.http.HttpServletRequest;
 import java.net.InetAddress;
 import java.net.UnknownHostException;
+import javax.servlet.http.HttpServletRequest;
 
 /**
  * <p>
@@ -18,64 +18,68 @@ import java.net.UnknownHostException;
  * work as expected.
  */
 public class HttpsRedirect implements Redirect {
-    private final boolean allowPrivateIps;
+  private final boolean allowPrivateIps;
 
-    public HttpsRedirect() {
-        this(true);
+  public HttpsRedirect() {
+    this(true);
+  }
+
+  /**
+   * @param allowPrivateIps If {@code true} then requests from private ip addresses won't be redirected.  An ip is
+   *                        considered to be private if it is a loopback address, a link local address, or a site
+   *                        local address.
+   */
+  public HttpsRedirect(boolean allowPrivateIps) {
+    this.allowPrivateIps = allowPrivateIps;
+  }
+
+  @Override
+  public String getRedirect(HttpServletRequest request) {
+    if (allowPrivateIps && isPrivateIp(request.getRemoteAddr())) {
+      return null;
     }
 
-    /**
-     * @param allowPrivateIps If {@code true} then requests from private ip addresses won't be redirected.  An ip is
-     *                        considered to be private if it is a loopback address, a link local address, or a site
-     *                        local address.
-     */
-    public HttpsRedirect(boolean allowPrivateIps) {
-        this.allowPrivateIps = allowPrivateIps;
+    String scheme = request.getScheme();
+    if ("http".equals(scheme)) {
+      return getRedirectUrl(request, "https");
     }
 
-    @Override
-    public String getRedirect(HttpServletRequest request) {
-        if (allowPrivateIps && isPrivateIp(request.getRemoteAddr())) {
-            return null;
-        }
+    return null;
+  }
 
-        String scheme = request.getScheme();
-        if ("http".equals(scheme)) {
-            return getRedirectUrl(request, "https");
-        }
-
-        return null;
+  /**
+   * Determine whether or not the provided address is private.
+   */
+  private boolean isPrivateIp(String address) {
+    InetAddress ip;
+    try {
+      ip = InetAddress.getByName(address);
+    } catch (UnknownHostException e) {
+      return false;
     }
 
-    /** Determine whether or not the provided address is private. */
-    private boolean isPrivateIp(String address) {
-        InetAddress ip;
-        try {
-            ip = InetAddress.getByName(address);
-        } catch (UnknownHostException e) {
-            return false;
-        }
+    return ip.isLoopbackAddress() || ip.isLinkLocalAddress() || ip.isSiteLocalAddress();
+  }
 
-        return ip.isLoopbackAddress() || ip.isLinkLocalAddress() || ip.isSiteLocalAddress();
+  /**
+   * Return the full URL that should be redirected to including query parameters.
+   */
+  private String getRedirectUrl(HttpServletRequest request, String newScheme) {
+    String serverName = request.getServerName();
+    String uri = request.getRequestURI();
+    String query = request.getQueryString();
+
+    StringBuilder redirect = new StringBuilder(100);
+    redirect.append(newScheme);
+    redirect.append("://");
+    redirect.append(serverName);
+    redirect.append(uri);
+
+    if (query != null) {
+      redirect.append('?');
+      redirect.append(query);
     }
 
-    /** Return the full URL that should be redirected to including query parameters. */
-    private String getRedirectUrl(HttpServletRequest request, String newScheme) {
-        String serverName = request.getServerName();
-        String uri = request.getRequestURI();
-        String query = request.getQueryString();
-
-        StringBuilder redirect = new StringBuilder(100);
-        redirect.append(newScheme);
-        redirect.append("://");
-        redirect.append(serverName);
-        redirect.append(uri);
-
-        if (query != null) {
-            redirect.append('?');
-            redirect.append(query);
-        }
-
-        return redirect.toString();
-    }
+    return redirect.toString();
+  }
 }
