@@ -68,6 +68,23 @@ public class MyApplication extends Application<...> {
 }
 ```
 
+To redirect non-HTTPS traffic to HTTPS and redirect a path to another path:
+```java
+public class MyApplication extends Application<...> {
+  // ...
+
+  @Override
+  public void initialize(Bootstrap<?> bootstrap) {
+    bootstrap.addBundle(new RedirectBundle(
+      new PathRedirect("/", "docs"),
+      new HttpsRedirect()
+    ));
+  }
+
+  // ...
+}
+```
+
 ## Regular Expression Redirect
 
 For more advanced users, there is also a regular expression based redirector that has access to the full URI.  This
