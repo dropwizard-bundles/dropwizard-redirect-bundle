@@ -104,3 +104,18 @@ public class MyApplication extends Application<...> {
 }
 ```
 
+To redirect non-HTTPS traffic to HTTPS in Dropwizard v0.9.0, use a Regular Expression Redirect:
+```java
+public class MyApplication extends Application<...> {
+  // ...
+
+  @Override
+  public void initialize(Bootstrap<?> bootstrap) {
+    bootstrap.addBundle(new RedirectBundle(
+      new UriRedirect("http://localhost:8080(.*)$", "https://localhost:8443$1")
+    ));
+  }
+
+  // ...
+}
+```
