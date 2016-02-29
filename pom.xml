@@ -4,7 +4,7 @@
 
     <groupId>io.dropwizard-bundles</groupId>
     <artifactId>dropwizard-redirect-bundle</artifactId>
-    <version>0.8.2-SNAPSHOT</version>
+    <version>0.8.2</version>
     <packaging>jar</packaging>
 
     <parent>
