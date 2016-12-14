@@ -63,7 +63,8 @@ public class PathRedirectTest {
     String path = (question == -1) ? uri : uri.substring(0, question);
     String params = (question == -1) ? null : uri.substring(question + 1);
 
-    // By default have the mock throw an exception when we've forgotten to mock a method that is called.
+    // By default have the mock throw an exception when we've forgotten to mock a method that is
+    // called.
     Exception exception = new RuntimeException("Forgot to mock a method");
     HttpServletRequest request = mock(HttpServletRequest.class, new ThrowsException(exception));
     doReturn(path).when(request).getRequestURI();
