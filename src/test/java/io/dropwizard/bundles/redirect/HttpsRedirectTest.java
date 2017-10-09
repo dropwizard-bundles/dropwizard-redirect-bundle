@@ -1,6 +1,5 @@
 package io.dropwizard.bundles.redirect;
 
-import com.google.common.base.Throwables;
 import java.net.MalformedURLException;
 import java.net.URL;
 import javax.servlet.http.HttpServletRequest;
@@ -137,7 +136,7 @@ public class HttpsRedirectTest {
     try {
       parsed = new URL(url);
     } catch (MalformedURLException e) {
-      throw Throwables.propagate(e);
+      throw new RuntimeException(e);
     }
 
     // By default have the mock throw an exception when we've forgotten to mock a method that is

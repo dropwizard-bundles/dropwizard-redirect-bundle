@@ -1,6 +1,5 @@
 package io.dropwizard.bundles.redirect;
 
-import com.google.common.base.Throwables;
 import com.google.common.collect.ImmutableMap;
 import java.net.MalformedURLException;
 import java.net.URL;
@@ -76,7 +75,7 @@ public class UriRedirectTest {
     try {
       url = new URL(uri);
     } catch (MalformedURLException e) {
-      throw Throwables.propagate(e);
+      throw new RuntimeException(e);
     }
 
     // By default have the mock throw an exception when we've forgotten to mock a method that is
