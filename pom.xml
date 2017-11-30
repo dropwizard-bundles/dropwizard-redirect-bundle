@@ -9,7 +9,7 @@
   </parent>
 
   <artifactId>dropwizard-redirect-bundle</artifactId>
-  <version>1.2.2-SNAPSHOT</version>  <!-- Make sure to keep this in sync with the parent pom version above. -->
+  <version>1.2.2</version>  <!-- Make sure to keep this in sync with the parent pom version above. -->
   <packaging>jar</packaging>
 
   <name>dropwizard-redirect-bundle</name>
@@ -27,7 +27,7 @@
     <url>https://github.com/dropwizard-bundles/dropwizard-redirect-bundle</url>
     <connection>scm:git:https://github.com/dropwizard-bundles/dropwizard-redirect-bundle</connection>
     <developerConnection>scm:git:https://github.com/dropwizard-bundles/dropwizard-redirect-bundle</developerConnection>
-    <tag>HEAD</tag>
+    <tag>v1.2.2</tag>
   </scm>
 
   <developers>
